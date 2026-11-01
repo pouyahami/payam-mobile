@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b1220">
   <title>جزئیات گوشی | موبایل پیام</title>
-  <meta name="description" content="مشخصات کامل گوشی در موبایل پیام نهاوند. تماس: ۰۹۱۲۷۱۴۴۹۸۸">
+  <meta name="description" content="مشخصات و عکس واقعی گوشی در موبایل پیام نهاوند">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,8 +14,12 @@
   <style>
     .pd{padding:28px 0 90px}.pd-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:28px}
     @media(max-width:900px){.pd-grid{grid-template-columns:1fr}}
-    .pd-gallery{background:#080c14;background-image:radial-gradient(ellipse at 50% 60%,#1a2740,#080c14 70%);border:1px solid #24344f;border-radius:20px;min-height:360px;display:grid;place-items:center;padding:24px}
-    .pd-gallery img{max-width:70%;max-height:340px;object-fit:contain;filter:drop-shadow(0 20px 30px rgba(0,0,0,.7))}
+    .pd-gallery{background:#080c14;background-image:radial-gradient(ellipse at 50% 60%,#1a2740,#080c14 70%);border:1px solid #24344f;border-radius:20px;min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+    .pd-gallery #mainPhoto{max-width:70%;max-height:320px;object-fit:contain;filter:drop-shadow(0 20px 30px rgba(0,0,0,.7))}
+    .pd-thumbs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+    .pd-thumbs button{border:2px solid transparent;background:#0f172a;border-radius:10px;padding:4px;cursor:pointer}
+    .pd-thumbs button.active,.pd-thumbs button:hover{border-color:#3b82f6}
+    .pd-thumbs img{width:52px;height:52px;object-fit:contain}
     .pd-brand{color:#22d3ee;font-size:12px;margin-bottom:6px}.pd h1{font-size:clamp(22px,3.5vw,32px);margin:0 0 6px}
     .pd-fa{color:#9aa8c0;margin-bottom:16px}.pd-price{font-size:22px;color:#67e8f9;font-weight:800;margin:12px 0 18px}
     .pd-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
@@ -48,18 +52,20 @@
       </div>
     </div>
   </header>
-  <main class="container pd" id="main"><div class="notfound" id="loading">در حال بارگذاری...</div></main>
+  <main class="container pd" id="main"><div class="notfound">در حال بارگذاری...</div></main>
   <div class="sticky-cta">
     <a href="tel:09127144988">تماس</a>
     <a href="https://wa.me/989127144988" target="_blank" rel="noopener">واتساپ</a>
   </div>
-  <footer class="footer"><div class="container footer-bottom"><span>© موبایل پیام</span><a href="products.html">بازگشت به فهرست</a></div></footer>
+  <footer class="footer"><div class="container footer-bottom"><span>© موبایل پیام</span><a href="products.html">بازگشت</a></div></footer>
   <script src="js/p1.js"></script>
   <script src="js/p2.js"></script>
   <script src="js/p3.js"></script>
   <script src="js/p4.js"></script>
+  <script src="js/img-fix.js"></script>
   <script>
     document.querySelector("#menuBtn")?.addEventListener("click", () => document.querySelector("#nav")?.classList.toggle("open"));
+    if (window.payamFixProducts) window.payamFixProducts();
     const id = new URLSearchParams(location.search).get("id");
     const products = window.PAYAM_PRODUCTS || [];
     const p = products.find(x => x.id === id);
@@ -73,7 +79,10 @@
       main.innerHTML = `
         <div class="crumb"><a href="./">خانه</a> / <a href="products.html">گوشی‌ها</a> / ${p.name}</div>
         <div class="pd-grid">
-          <div class="pd-gallery"><img src="${p.img}" alt="${p.name}" onerror="this.style.opacity=.25"></div>
+          <div class="pd-gallery">
+            <img id="mainPhoto" src="${p.img}" alt="${p.name}" onerror="this.style.opacity=.25">
+            <div class="pd-thumbs" id="thumbs"></div>
+          </div>
           <div>
             <div class="pd-brand">${(p.brand||"").toUpperCase()}</div>
             <h1>${p.name}</h1>
@@ -96,11 +105,38 @@
             <div class="pd-desc">${p.desc}</div>
           </div>
         </div>
-        ${related.length ? `<div class="pd-related"><h2>مدل‌های مشابه</h2><div class="product-grid">${related.map(r => `
-          <a class="card" href="product.html?id=${r.id}" style="text-decoration:none;color:inherit">
+        ${related.length ? `<div class="pd-related"><h2>مدل‌های مشابه</h2><div class="product-grid">${related.map(r => {
+          if (window.PAYAM_IMG_FIX && window.PAYAM_IMG_FIX[r.id]) r.img = window.PAYAM_IMG_FIX[r.id];
+          return `<a class="card" href="product.html?id=${r.id}" style="text-decoration:none;color:inherit">
             <div class="card-img"><img src="${r.img}" alt="${r.name}" loading="lazy" onerror="this.style.opacity=.2"></div>
             <div class="card-body"><div class="card-brand">${(r.brand||"").toUpperCase()}</div><h3>${r.name}</h3>
-            <p class="card-spec">${r.ram} · ${r.storage}</p></div></a>`).join("")}</div></div>` : ""}`;
+            <p class="card-spec">${r.ram} · ${r.storage}</p></div></a>`;
+        }).join("")}</div></div>` : ""}`;
+
+      const candidates = window.payamGallery ? window.payamGallery(p) : [p.img];
+      const mainPhoto = document.getElementById("mainPhoto");
+      const thumbs = document.getElementById("thumbs");
+      const valid = [];
+      let left = candidates.length;
+      candidates.forEach((u, idx) => {
+        const im = new Image();
+        im.onload = () => { valid.push({u, idx}); left--; if (!left) done(); };
+        im.onerror = () => { left--; if (!left) done(); };
+        im.src = u;
+      });
+      function done() {
+        valid.sort((a,b)=>a.idx-b.idx);
+        const list = valid.length ? valid.map(v=>v.u) : [p.img];
+        mainPhoto.src = list[0];
+        mainPhoto.style.opacity = 1;
+        thumbs.innerHTML = list.map((u,i)=>`<button type="button" class="${i===0?"active":""}" data-src="${u}"><img src="${u}" alt=""></button>`).join("");
+        thumbs.onclick = (e) => {
+          const btn = e.target.closest("button[data-src]");
+          if (!btn) return;
+          mainPhoto.src = btn.dataset.src;
+          thumbs.querySelectorAll("button").forEach(b => b.classList.toggle("active", b===btn));
+        };
+      }
     }
   </script>
 </body>
