@@ -59,6 +59,7 @@
   </div>
   <footer class="footer"><div class="container footer-bottom"><span>© موبایل پیام</span><a href="products.html">بازگشت</a></div></footer>
   <script src="js/p1.js"></script>
+  <script src="js/p1b.js"></script>
   <script src="js/p2.js"></script>
   <script src="js/p3.js"></script>
   <script src="js/p4.js"></script>
@@ -104,15 +105,7 @@
             </div>
             <div class="pd-desc">${p.desc}</div>
           </div>
-        </div>
-        ${related.length ? `<div class="pd-related"><h2>مدل‌های مشابه</h2><div class="product-grid">${related.map(r => {
-          if (window.PAYAM_IMG_FIX && window.PAYAM_IMG_FIX[r.id]) r.img = window.PAYAM_IMG_FIX[r.id];
-          return `<a class="card" href="product.html?id=${r.id}" style="text-decoration:none;color:inherit">
-            <div class="card-img"><img src="${r.img}" alt="${r.name}" loading="lazy" onerror="this.style.opacity=.2"></div>
-            <div class="card-body"><div class="card-brand">${(r.brand||"").toUpperCase()}</div><h3>${r.name}</h3>
-            <p class="card-spec">${r.ram} · ${r.storage}</p></div></a>`;
-        }).join("")}</div></div>` : ""}`;
-
+        </div>`;
       const candidates = window.payamGallery ? window.payamGallery(p) : [p.img];
       const mainPhoto = document.getElementById("mainPhoto");
       const thumbs = document.getElementById("thumbs");
