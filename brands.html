@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+  <title>برندها | موبایل پیام نهاوند</title>
+  <meta name="description" content="برندهای موجود در موبایل پیام: اپل، سامسونگ، شیائومی، آنر و بیشتر.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .brands-main { padding: 28px 0 80px; }
+    .brand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; margin-top: 20px; }
+    .brand-card {
+      background: #151f33; border: 1px solid #24344f; border-radius: 16px; padding: 22px 14px;
+      text-align: center; text-decoration: none; color: inherit; transition: .2s;
+    }
+    .brand-card:hover { border-color: #3b82f6; transform: translateY(-3px); }
+    .brand-card b { display: block; font-size: 18px; margin-bottom: 6px; }
+    .brand-card span { color: #9aa8c0; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="container topbar-inner">
+    <span>📍 نهاوند، روبروی بانک ملت مرکزی</span>
+    <a href="tel:09127144988">📞 ۰۹۱۲۷۱۴۴۹۸۸</a>
+  </div></div>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="./"><span class="logo-mark">پ</span><span class="logo-text">موبایل <b>پیام</b><small>نهاوند</small></span></a>
+      <nav class="nav" id="nav">
+        <a href="./">خانه</a>
+        <a href="products.html">گوشی‌ها</a>
+        <a href="brands.html" class="active">برندها</a>
+        <a href="about.html">درباره ما</a>
+        <a href="contact.html">تماس</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn-call" href="tel:09127144988">تماس</a>
+        <button class="menu-btn" id="menuBtn" aria-label="منو"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main class="container brands-main">
+    <h1>برندهای موجود</h1>
+    <p class="lead-sm">از بین برندهای زیر انتخاب کنید و فهرست گوشی‌ها را ببینید.</p>
+    <div class="brand-grid" id="brandGrid"></div>
+  </main>
+  <div class="sticky-cta">
+    <a href="tel:09127144988">تماس</a>
+    <a href="https://wa.me/989127144988" target="_blank" rel="noopener">واتساپ</a>
+  </div>
+  <footer class="footer"><div class="container footer-bottom"><span>© موبایل پیام</span></div></footer>
+  <script src="js/p1.js"></script>
+  <script src="js/p2.js"></script>
+  <script src="js/p3.js"></script>
+  <script src="js/p4.js"></script>
+  <script>
+    document.querySelector("#menuBtn")?.addEventListener("click", () => document.querySelector("#nav")?.classList.toggle("open"));
+    const names = {apple:"Apple",samsung:"Samsung",xiaomi:"Xiaomi",honor:"Honor",nothing:"Nothing",google:"Google",oneplus:"OnePlus",realme:"realme",oppo:"OPPO",vivo:"vivo",motorola:"Motorola",nokia:"Nokia",tecno:"Tecno",infinix:"Infinix"};
+    const products = window.PAYAM_PRODUCTS || [];
+    const counts = {};
+    products.forEach(p => { counts[p.brand] = (counts[p.brand]||0)+1; });
+    const fa = n => String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[+d]);
+    document.querySelector("#brandGrid").innerHTML = Object.keys(counts).sort().map(b => `
+      <a class="brand-card" href="products.html?brand=${b}">
+        <b>${names[b]||b}</b>
+        <span>${fa(counts[b])} مدل</span>
+      </a>`).join("");
+  </script>
+</body>
+</html>

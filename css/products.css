@@ -1,0 +1,54 @@
+.catalog-main { padding: 28px 0 80px; }
+.catalog-hero {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 20px; flex-wrap: wrap; margin-bottom: 22px;
+}
+.catalog-hero h1 { margin: 8px 0; font-size: clamp(26px, 4vw, 36px); font-weight: 800; }
+.catalog-stats { display: flex; gap: 12px; }
+.catalog-stats > div {
+  min-width: 84px; text-align: center; padding: 12px 14px;
+  background: #151f33; border: 1px solid #24344f; border-radius: 14px;
+}
+.catalog-stats b { display: block; color: #22d3ee; font-size: 22px; }
+.catalog-stats span { font-size: 11px; color: #9aa8c0; }
+.catalog-tools { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.search-wide input {
+  width: 100%; height: 48px; border-radius: 14px;
+  border: 1px solid #24324a; background: #151f33;
+  padding: 0 16px; color: #fff; outline: none;
+}
+.search-wide input:focus { border-color: #3b82f6; }
+.sort-row {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; flex-wrap: wrap; color: #9aa8c0; font-size: 13px;
+}
+.sort-row select {
+  margin-right: 8px; background: #151f33; border: 1px solid #24324a;
+  color: #fff; border-radius: 8px; padding: 8px 10px;
+}
+.pagination {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 28px;
+}
+.page-btn {
+  min-width: 40px; height: 40px; border-radius: 10px;
+  border: 1px solid #24344f; background: #151f33; color: #c5d0e2; cursor: pointer;
+}
+.page-btn.active, .page-btn:hover { border-color: #3b82f6; background: #1a2740; color: #fff; }
+.page-btn:disabled { opacity: .4; cursor: default; }
+.product-grid .card-img {
+  height: 210px !important;
+  background: #0a0e16 !important;
+  background-image: radial-gradient(ellipse at 50% 70%, #1a2740 0%, #0a0e16 70%) !important;
+}
+.product-grid .card-img img {
+  width: auto !important;
+  max-width: 70% !important;
+  height: 82% !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.65)) !important;
+}
+.img-fallback {
+  width: 64px; height: 64px; border-radius: 16px;
+  background: linear-gradient(135deg, #1e3a5f, #0f172a);
+  display: grid; place-items: center; color: #64748b; font-size: 28px;
+}
