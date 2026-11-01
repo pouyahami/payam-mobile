@@ -35,20 +35,89 @@
 }
 .page-btn.active, .page-btn:hover { border-color: #3b82f6; background: #1a2740; color: #fff; }
 .page-btn:disabled { opacity: .4; cursor: default; }
+
+/* Premium product photos - kill white GSMArena backgrounds */
+.product-grid .card {
+  overflow: hidden;
+}
 .product-grid .card-img {
-  height: 210px !important;
-  background: #0a0e16 !important;
-  background-image: radial-gradient(ellipse at 50% 70%, #1a2740 0%, #0a0e16 70%) !important;
+  height: 220px !important;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 85%, rgba(34, 211, 238, 0.08), transparent 60%),
+    linear-gradient(180deg, #0b1220 0%, #080c14 100%) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  position: relative;
+  overflow: hidden;
+}
+.product-grid .card-img::before {
+  content: "";
+  position: absolute;
+  left: 12%; right: 12%; bottom: 10%;
+  height: 18px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.55), transparent 70%);
+  filter: blur(6px);
+  pointer-events: none;
 }
 .product-grid .card-img img {
   width: auto !important;
-  max-width: 70% !important;
-  height: 82% !important;
+  max-width: 62% !important;
+  height: 78% !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 18px 28px rgba(0,0,0,.65)) !important;
+  object-position: center 58% !important;
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.75)) !important;
+  transition: transform .35s ease;
+  position: relative;
+  z-index: 1;
+}
+.product-grid .card:hover .card-img img {
+  transform: scale(1.06) translateY(-4px);
 }
 .img-fallback {
-  width: 64px; height: 64px; border-radius: 16px;
+  width: 72px; height: 72px; border-radius: 18px;
   background: linear-gradient(135deg, #1e3a5f, #0f172a);
-  display: grid; place-items: center; color: #64748b; font-size: 28px;
+  display: grid; place-items: center; color: #64748b; font-size: 32px;
+}
+
+/* Fullscreen lightbox */
+.lightbox {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(2,6,14,.92);
+  backdrop-filter: blur(10px);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+.lightbox[hidden] { display: none !important; }
+.lightbox-close {
+  position: absolute; top: 16px; left: 16px;
+  width: 44px; height: 44px; border-radius: 12px;
+  border: 1px solid #334155; background: #0f172a;
+  color: #fff; font-size: 22px; cursor: pointer;
+}
+.lightbox-main {
+  max-width: min(92vw, 520px);
+  max-height: 70vh;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 48px rgba(0,0,0,.8));
+}
+.lightbox-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 1px solid #334155; background: rgba(15,23,42,.9);
+  color: #fff; font-size: 22px; cursor: pointer;
+}
+.lightbox-nav.prev { right: 16px; }
+.lightbox-nav.next { left: 16px; }
+.lightbox-thumbs {
+  display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; justify-content: center;
+  max-width: 90vw;
+}
+.lightbox-thumbs button {
+  border: 2px solid transparent; background: #0f172a; border-radius: 10px;
+  padding: 4px; cursor: pointer;
+}
+.lightbox-thumbs button.active { border-color: #22d3ee; }
+.lightbox-thumbs img { width: 56px; height: 56px; object-fit: contain; }
+.lightbox-counter {
+  color: #94a3b8; font-size: 13px; margin-top: 10px;
 }
