@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pouyahami.github.io/payam-mobile/sitemap.xml
