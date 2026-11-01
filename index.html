@@ -94,17 +94,21 @@
     <a href="https://wa.me/989127144988" target="_blank" rel="noopener">واتساپ</a>
   </div>
   <script src="js/p1.js"></script>
+  <script src="js/p1b.js"></script>
   <script src="js/p2.js"></script>
   <script src="js/p3.js"></script>
   <script src="js/p4.js"></script>
+  <script src="js/img-fix.js"></script>
   <script>
     document.querySelector("#menuBtn")?.addEventListener("click", () => document.querySelector("#nav")?.classList.toggle("open"));
+    if (window.payamFixProducts) window.payamFixProducts();
     const all = window.PAYAM_PRODUCTS || [];
-    const picks = all.filter(p => p.badge || ["iphone-16-pro-max","s25-ultra","x15-ultra","poco-x7-pro","a56","note14-pro","iphone-16","s24-ultra"].includes(p.id)).slice(0, 8);
+    const picks = all.filter(p => p.badge || ["iphone-16-pro-max","s25-ultra","x15-ultra","a56","iphone-16","s24-ultra","pixel-9-pro","nord4"].includes(p.id)).slice(0, 8);
     const list = picks.length ? picks : all.slice(0, 8);
+    const ph = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="240"><rect fill="#0b1220" width="200" height="240"/><rect x="55" y="30" width="90" height="160" rx="12" fill="#1e293b" stroke="#334155"/></svg>');
     document.querySelector("#featureGrid").innerHTML = list.map(p => `
       <a class="card" href="product.html?id=${p.id}" style="text-decoration:none;color:inherit">
-        <div class="card-img">${p.badge?`<span class="card-badge">${p.badge}</span>`:""}<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=.2"></div>
+        <div class="card-img">${p.badge?`<span class="card-badge">${p.badge}</span>`:""}<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='${ph}'"></div>
         <div class="card-body"><div class="card-brand">${(p.brand||"").toUpperCase()}</div><h3>${p.name}</h3>
         <p class="card-spec">${p.ram} · ${p.storage}</p>
         <div class="card-foot"><span class="price">تماس بگیرید</span><span class="card-btn">جزئیات</span></div></div>

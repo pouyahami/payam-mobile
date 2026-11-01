@@ -18,6 +18,8 @@
   let filtered = [];
   const fa = (n) => String(n).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[+d]);
   const brandNames = {apple:"Apple",samsung:"Samsung",xiaomi:"Xiaomi",honor:"Honor",nothing:"Nothing",google:"Google",oneplus:"OnePlus",realme:"realme",oppo:"OPPO",vivo:"vivo",motorola:"Motorola",nokia:"Nokia",tecno:"Tecno",infinix:"Infinix"};
+  const PLACEHOLDER = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="240" viewBox="0 0 200 240"><rect fill="#0b1220" width="200" height="240"/><rect x="55" y="30" width="90" height="160" rx="12" fill="#1e293b" stroke="#334155" stroke-width="2"/><circle cx="100" cy="175" r="6" fill="#475569"/><text x="100" y="215" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="12">موبایل</text></svg>');
+
   function buildBrands() {
     const brands = [...new Set(products.map((p) => p.brand))].sort();
     if (brandCount) brandCount.textContent = fa(brands.length);
@@ -44,7 +46,8 @@
     render();
   }
   function imgTag(p) {
-    return `<img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<div class=img-fallback>📱</div>')">`;
+    const src = p.img || PLACEHOLDER;
+    return `<img src="${src}" alt="${p.name}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${PLACEHOLDER}'">`;
   }
   function render() {
     if (resultLabel) resultLabel.textContent = fa(filtered.length) + " محصول";

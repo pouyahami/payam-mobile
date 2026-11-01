@@ -36,7 +36,8 @@ window.PAYAM_IMG_FIX = {
   "pixel-9":"https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-.jpg",
   "pixel-7":"https://fdn2.gsmarena.com/vv/bigpic/google-pixel-7a.jpg",
   "nord4":"https://fdn2.gsmarena.com/vv/bigpic/oneplus-nord4.jpg",
-  "nord-ce4":"https://fdn2.gsmarena.com/vv/bigpic/oneplus-nord-ce4-lite.jpg",
+  "nord-ce4":"https://fdn2.gsmarena.com/vv/bigpic/oneplus-nord4.jpg",
+  "nord-ce3":"https://fdn2.gsmarena.com/vv/bigpic/oneplus-nord4.jpg",
   "gt7-pro":"https://fdn2.gsmarena.com/vv/bigpic/realme-gt7-pro.jpg",
   "gt6":"https://fdn2.gsmarena.com/vv/bigpic/realme-gt6.jpg",
   "c67":"https://fdn2.gsmarena.com/vv/bigpic/realme-c65.jpg",
@@ -46,7 +47,18 @@ window.PAYAM_IMG_FIX = {
   "g04":"https://fdn2.gsmarena.com/vv/bigpic/motorola-moto-g24.jpg",
   "nokia-c32":"https://fdn2.gsmarena.com/vv/bigpic/nokia-c32-2023.jpg",
   "infinix-note40":"https://fdn2.gsmarena.com/vv/bigpic/infinix-hot-40.jpg",
-  "a40":"https://fdn2.gsmarena.com/vv/bigpic/oppo-a3x.jpg"
+  "a40":"https://fdn2.gsmarena.com/vv/bigpic/oppo-a3x.jpg",
+  "reno12-pro":"https://fdn2.gsmarena.com/vv/bigpic/oppo-reno12.jpg",
+  "reno13-pro":"https://fdn2.gsmarena.com/vv/bigpic/oppo-reno-13f-5g.jpg"
+};
+
+/** Reliable image URL via CDN proxy (works better than direct GSMArena hotlink) */
+window.payamImg = function (url, w) {
+  if (!url) return "";
+  w = w || 500;
+  if (url.indexOf("wsrv.nl") !== -1 || url.indexOf("images.weserv.nl") !== -1) return url;
+  var bare = String(url).replace(/^https?:\/\//i, "");
+  return "https://wsrv.nl/?url=" + encodeURIComponent(bare) + "&w=" + w + "&output=jpg&q=90";
 };
 
 window.payamFixProducts = function () {
@@ -54,12 +66,23 @@ window.payamFixProducts = function () {
   var fix = window.PAYAM_IMG_FIX || {};
   list.forEach(function (p) {
     if (fix[p.id]) p.img = fix[p.id];
+    // always route through proxy for consistent loading
+    p.img = window.payamImg(p.img, 500);
   });
   return list;
 };
 
 window.payamGallery = function (p) {
-  var img = p.img || "";
+  var raw = (window.PAYAM_IMG_FIX && window.PAYAM_IMG_FIX[p.id]) || (p.img || "");
+  // strip proxy if present to get original
+  var img = raw;
+  if (img.indexOf("wsrv.nl") !== -1) {
+    try {
+      var m = img.match(/url=([^&]+)/);
+      if (m) img = decodeURIComponent(m[1]);
+      if (img.indexOf("http") !== 0) img = "https://" + img;
+    } catch (e) {}
+  }
   var stem = img.split("/").pop().replace(/\.jpg$/i, "");
   var folderMap = {
     apple: "apple", samsung: "samsung", xiaomi: "xiaomi", honor: "honor",
@@ -72,5 +95,5 @@ window.payamGallery = function (p) {
   for (var i = 0; i < 6; i++) {
     urls.push("https://fdn2.gsmarena.com/vv/pics/" + folder + "/" + stem + "-" + i + ".jpg");
   }
-  return urls;
+  return urls.map(function (u) { return window.payamImg(u, 800); });
 };
