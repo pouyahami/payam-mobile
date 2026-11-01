@@ -1,4 +1,5 @@
 (() => {
+  if (window.payamFixProducts) window.payamFixProducts();
   const products = window.PAYAM_PRODUCTS || [];
   const grid = document.querySelector("#productGrid");
   const emptyBox = document.querySelector("#emptyBox");
