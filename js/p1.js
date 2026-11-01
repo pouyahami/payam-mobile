@@ -1,1 +1,14 @@
-window.PAYAM_PRODUCTS = [];
+window.PAYAM_PRODUCTS = [
+{id:"iphone-16-pro-max",brand:"apple",name:"iPhone 16 Pro Max",nameFa:"آیفون ۱۶ پرو مکس",ram:"۸ گیگ",storage:"۲۵۶ گیگ",chip:"A18 Pro",screen:"۶.۹ اینچ",camera:"۴۸+۱۲+۱۲",battery:"۴۶۸۵",os:"iOS 18",badge:"پیشنهاد",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-16-pro-max.jpg"},
+{id:"iphone-16-pro",brand:"apple",name:"iPhone 16 Pro",nameFa:"آیفون ۱۶ پرو",ram:"۸ گیگ",storage:"۱۲۸ گیگ",chip:"A18 Pro",screen:"۶.۳ اینچ",camera:"۴۸+۱۲+۱۲",battery:"۳۵۸۲",os:"iOS 18",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-16-pro.jpg"},
+{id:"iphone-16-plus",brand:"apple",name:"iPhone 16 Plus",nameFa:"آیفون ۱۶ پلاس",ram:"۸ گیگ",storage:"۱۲۸ گیگ",chip:"A18",screen:"۶.۷ اینچ",camera:"۴۸+۱۲",battery:"۴۰۰۶",os:"iOS 18",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-16-plus.jpg"},
+{id:"iphone-16",brand:"apple",name:"iPhone 16",nameFa:"آیفون ۱۶",ram:"۸ گیگ",storage:"۱۲۸ گیگ",chip:"A18",screen:"۶.۱ اینچ",camera:"۴۸+۱۲",battery:"۳۵۶۱",os:"iOS 18",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-16.jpg"},
+{id:"iphone-15-pro-max",brand:"apple",name:"iPhone 15 Pro Max",nameFa:"آیفون ۱۵ پرو مکس",ram:"۸ گیگ",storage:"۲۵۶ گیگ",chip:"A17 Pro",screen:"۶.۷ اینچ",camera:"۴۸+۱۲+۱۲",battery:"۴۴۴۱",os:"iOS 17",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15-pro-max.jpg"},
+{id:"iphone-15-pro",brand:"apple",name:"iPhone 15 Pro",nameFa:"آیفون ۱۵ پرو",ram:"۸ گیگ",storage:"۱۲۸ گیگ",chip:"A17 Pro",screen:"۶.۱ اینچ",camera:"۴۸+۱۲+۱۲",battery:"۳۲۷۴",os:"iOS 17",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15-pro.jpg"},
+{id:"iphone-15-plus",brand:"apple",name:"iPhone 15 Plus",nameFa:"آیفون ۱۵ پلاس",ram:"۶ گیگ",storage:"۱۲۸ گیگ",chip:"A16",screen:"۶.۷ اینچ",camera:"۴۸+۱۲",battery:"۴۳۸۳",os:"iOS 17",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15-plus-.jpg"},
+{id:"iphone-15",brand:"apple",name:"iPhone 15",nameFa:"آیفون ۱۵",ram:"۶ گیگ",storage:"۱۲۸ گیگ",chip:"A16",screen:"۶.۱ اینچ",camera:"۴۸+۱۲",battery:"۳۳۴۹",os:"iOS 17",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15.jpg"},
+{id:"iphone-14-pro-max",brand:"apple",name:"iPhone 14 Pro Max",nameFa:"آیفون ۱۴ پرو مکس",ram:"۶ گیگ",storage:"۱۲۸ گیگ",chip:"A16",screen:"۶.۷ اینچ",camera:"۴۸+۱۲+۱۲",battery:"۴۳۲۳",os:"iOS 16",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14-pro-max-.jpg"},
+{id:"iphone-14-pro",brand:"apple",name:"iPhone 14 Pro",nameFa:"آیفون ۱۴ پرو",ram:"۶ گیگ",storage:"۱۲۸ گیگ",chip:"A16",screen:"۶.۱ اینچ",camera:"۴۸+۱۲+۱۲",battery:"۳۲۰۰",os:"iOS 16",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14-pro.jpg"},
+{id:"iphone-14",brand:"apple",name:"iPhone 14",nameFa:"آیفون ۱۴",ram:"۶ گیگ",storage:"۱۲۸ گیگ",chip:"A15",screen:"۶.۱ اینچ",camera:"۱۲+۱۲",battery:"۳۲۷۹",os:"iOS 16",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14.jpg"},
+{id:"iphone-13-pro",brand:"apple",name:"iPhone 13 Pro",nameFa:"آیفون ۱۳ پرو",ram:"۶ گیگ",storage:"۱۲۸ گیگ",chip:"A15",screen:"۶.۱ اینچ",camera:"۱۲+۱۲+۱۲",battery:"۳۰۹۵",os:"iOS 15",img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13-pro.jpg"},
+];
