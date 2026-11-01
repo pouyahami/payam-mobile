@@ -1,0 +1,1 @@
+window.PAYAM_PRODUCTS = [];
